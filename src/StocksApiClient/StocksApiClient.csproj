@@ -1,0 +1,28 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <GraphQL Remove="Stocks.graphql" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Remove="stocks.graphql" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <GraphQLConfig Include="stocks.graphql" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="StrawberryShake.CodeGeneration.CSharp.Analyzers" Version="12.11.1" />
+    <PackageReference Include="StrawberryShake.Transport.Http" Version="12.11.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Generated\" />
+  </ItemGroup>
+
+</Project>

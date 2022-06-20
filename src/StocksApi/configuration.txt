@@ -1,0 +1,31 @@
+﻿dotnet new tool-manifest
+dotnet tool install StrawberryShake.Tools --local
+
+Switch to project with the client and
+dotnet add Demo package StrawberryShake.Transport.Http
+dotnet add Demo package StrawberryShake.CodeGeneration.CSharp.Analyzers
+dotnet add Demo package Microsoft.Extensions.Http
+dotnet graphql init http://localhost:61295/graphql/ -n StocksApiClient
+
+head over to the .graphqlrc.json and insert a namespace property to the StrawberryShake section
+
+Create new query document stocks.graphql with the following content:
+query GetIndexes($after: String $first: Int) {
+    indexes (after: $after first: $first) {
+        pageInfo {
+            hasNextPage
+        }
+    nodes {
+        indexName,
+        hight,
+        last
+        time
+    }
+  }
+}
+
+Swithc to service where the client will be used and
+  services.AddStocksApiClient()
+ .ConfigureHttpClient(client => client.BaseAddress = new Uri("http://localhost:61295/graphql"));
+
+More info at https://chillicream.com/docs/strawberryshake/get-started/console

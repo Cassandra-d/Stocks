@@ -1,0 +1,13 @@
+﻿query GetIndexes($after: String $first: Int) {
+    indexes (after: $after first: $first) {
+        pageInfo {
+            hasNextPage
+        }
+    nodes {
+        indexName,
+        hight,
+        last
+        time
+    }
+  }
+}
